@@ -22,31 +22,17 @@ const dummy_meetups = [
   }
 ];
 
-// Useful to pass props to DYNAMIC web pages components from async sources.
-export async function getServerSideProps(context) {
-  // fetch data from an API or server things like auth
-
-  // As in an express server endpoints you could get request and response objects from "endpoints"
-  const req = context.req;
-  const res = context.res;
-
+// Useful to pass props to STATICS web pages components from async sources.
+// Fetch data at build time
+export async function getStaticProps(context) {
+  // You can run server things here or fetch apis or a Data Base
   return {
     props: {
       meetups: dummy_meetups
-    }
+    },
+    revalidate: 1 // This parameter recreate the Home page again in the server every 1 second
   }
 }
-
-// Useful to pass props to STATICS web pages components from async sources.
-// export async function getStaticProps(context) {
-//   // You can run server things here or fetch apis or a Data Base
-//   return {
-//     props: {
-//       meetups: dummy_meetups
-//     },
-//     revalidate: 1 // This parameter recreate the Home page again in the server every 1 second
-//   }
-// }
 
 export default function Home({ meetups }) {
   return (

@@ -1,8 +1,8 @@
 import MeetupDetail from '../../components/meetups/MeetupDetail';
 
-export default function MeetupDetail({ meetups }) {
+export default function MeetupDetailROute({ meetups }) {
     return (
-        <MeetupDetail meetup={meetup} />
+        <MeetupDetail meetup={meetups} />
     )
 }
 
@@ -26,6 +26,8 @@ export async function getStaticPaths(context) {
   }
 }
 
+
+
 // Useful to pass props to STATICS web pages components from async sources.
 export async function getStaticProps(context) {
   // You can run server things here or fetch apis.
@@ -36,3 +38,14 @@ export async function getStaticProps(context) {
     revalidate: 1 // This parameter recreate the page again in the server every 1 second
   }
 }
+
+
+// Fetch data on each request.
+// export async function getServerSideProps(context) {
+//   // You can run server things here or fetch apis.
+//   return {
+//     props: {
+//       meetup: { id: '123' }
+//     }
+//   }
+// }
